@@ -1,0 +1,33 @@
+# profiles.yaml
+# Define scan profiles used by nmap_automator.py
+scans:
+  quick:
+    flags: "-sS -T4 -Pn"
+    scripts: "default"
+    output: "all"
+    timeout: 1200
+
+  stealth:
+    flags: "-sS -sU -T2 -Pn -p-"
+    scripts: "safe"
+    output: "all"
+    timeout: 3600
+
+  full_tcp:
+    flags: "-sS -p- -T4 -Pn"
+    scripts: "default"
+    output: "all"
+    timeout: 7200
+
+  vuln:
+    flags: "-sV -sC -Pn"
+    scripts: "vuln"
+    output: "all"
+    timeout: 3600
+    extra: "--script-args vulns.showall=1"
+
+  web:
+    flags: "-sV -p80,443,8080 -Pn"
+    scripts: "http-enum,http-title,http-vuln*"
+    output: "all"
+    timeout: 1800
